@@ -7,6 +7,7 @@ import { useCart } from '../../contexts/CartContext';
 import { ProductDetail } from '../../components/public/ProductDetail';
 import { CartSidebar } from '../../components/public/CartSidebar';
 import { CheckoutModal } from '../../components/public/CheckoutModal';
+import { AnimatedCarousel } from '../../components/public/AnimatedCarousel';
 import Pathtop from '../../components/public/Pathformtop.tsx'; /*DF:componenetes pathform*/
 import Pathbottom from '../../components/public/Pathformbottom.tsx';/*DF:componenetes pathform*/
 import Pathleft from '../../components/public/Pathformleft.tsx';/*DF:componenetes pathform*/
@@ -419,6 +420,27 @@ export const PublicMenu: React.FC = () => {
           </div>
         </div>
       </header>
+
+      {/* ANIMATED CAROUSEL */}
+      {!searchTerm && (
+        <section className="relative z-30 -mt-5">
+          <AnimatedCarousel
+            images={[
+              "https://images.unsplash.com/photo-1559494007-9f5847c49d94?ixlib=rb-1.2.1&auto=format&fit=crop&w=774&q=80",
+              "https://images.unsplash.com/photo-1506477331477-33d5d8b3dc85?ixlib=rb-1.2.1&auto=format&fit=crop&w=2425&q=80",
+              "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?ixlib=rb-1.2.1&auto=format&fit=crop&w=652&q=80",
+              "https://images.unsplash.com/photo-1525183995014-bd94c0750cd5?ixlib=rb-1.2.1&auto=format&fit=crop&w=870&q=80",
+              "https://images.unsplash.com/photo-1488462237308-ecaa28b729d7?ixlib=rb-1.2.1&auto=format&fit=crop&w=714&q=80",
+              "https://images.unsplash.com/photo-1503756234508-e32369269deb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1035&q=80",
+              "https://images.unsplash.com/photo-1504681869696-d977211a5f4c?ixlib=rb-1.2.1&auto=format&fit=crop&w=652&q=80",
+            ]}
+            primaryColor={primaryColor}
+            textColor={textColor}
+            fontFamily={theme.secondary_font || 'Poppins'}
+          />
+        </section>
+      )}
+
       {/* FEATURED SECTION SLIDER */}
       {!searchTerm && featuredProducts.length > 0 && ( /*DF:Se agrega condicion para que cuando se haga una busqueda se muestre solo los productos*/
         <section className="max-w-6xl mx-auto px-5 md:px-25 py-8 md:py-16  md:pt-5 md:pb-7 relative z-40 md:scale-[0.9] "> {/*DF:Se reduce un poco el tamaño dela seccion y se agrega un pb*/}
