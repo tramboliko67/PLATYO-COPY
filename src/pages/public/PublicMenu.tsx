@@ -446,31 +446,7 @@ export const PublicMenu: React.FC = () => {
       {/* FEATURED SECTION SLIDER */}
       {!searchTerm && featuredProducts.length > 0 && ( /*DF:Se agrega condicion para que cuando se haga una busqueda se muestre solo los productos*/
         <section className="max-w-6xl mx-auto px-5 md:px-25 py-8 md:py-16  md:pt-5 md:pb-7 relative z-40 md:scale-[0.9] "> {/*DF:Se reduce un poco el tamaño dela seccion y se agrega un pb*/}
-          <div className="text-left mb-2 -mt-10 p-4 pb-6 md:p-0 "> 
-            <p
-              className="text-xl mb-2 opacity-70"
-              style={{
-                color: textColor,
-                fontFamily: theme.primary_font || 'Inter'
-              }}
-            >
-              Te presentamos nuestros
-            </p>
-            <h2
-              className="text-5xl font-bold mb-2"
-              style={{
-                color: textColor,
-                fontFamily: theme.secondary_font || 'Poppins'
-              }}
-            >
-              destacados
-            </h2>
-            <div className="flex items-left justify-left gap-1">
-              {[1,2,3,4,5].map(i => (
-                <Star key={i} className="w-5 h-5 fill-current" style={{ color: secondaryColor }} />
-              ))}
-            </div>
-          </div>
+
 
           <div className="relative h-[390px] md:scale-90"> {/*DF:Se redujo un poco el alto de la tarjeta para que quepa todo mejor*/}
             <div className="absolute inset-0 flex items-center justify-center">
