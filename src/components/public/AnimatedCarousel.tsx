@@ -46,32 +46,7 @@ export const AnimatedCarousel: React.FC<AnimatedCarouselProps> = ({
   if (products.length === 0) return null;
 
   return (
-    <div className="relative w-full overflow-hidden" style={{ height: `${BACKDROP_HEIGHT + 450}px` }}>
-      <div className="text-left mb-2 -mt-10 p-4 pb-6 md:p-0 ">  
-        <p
-          className="text-xl mb-2 opacity-70"
-          style={{
-            color: textColor,
-            fontFamily: theme.primary_font || 'Inter'
-          }}
-        >
-          Te presentamos nuestros
-        </p>
-        <h2
-          className="text-5xl font-bold mb-2"
-          style={{
-            color: textColor,
-            fontFamily: theme.secondary_font || 'Poppins'
-          }}
-        >
-          destacados
-        </h2>
-        <div className="flex items-left justify-left gap-1">
-          {[1,2,3,4,5].map(i => (
-            <Star key={i} className="w-5 h-5 fill-current" style={{ color: secondaryColor }} />
-          ))}
-        </div>
-      </div>
+    <div className="relative w-full overflow-hidden" style={{ height: `${BACKDROP_HEIGHT + 350}px` }}>
 
       {/* Scrollable Cards */}
       <div
