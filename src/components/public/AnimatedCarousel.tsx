@@ -46,7 +46,7 @@ export const AnimatedCarousel: React.FC<AnimatedCarouselProps> = ({
   if (products.length === 0) return null;
 
   return (
-    <div className="relative w-full overflow-hidden" style={{ height: `${BACKDROP_HEIGHT + 350}px` }}>
+    <div className="relative w-full overflow-hidden" style={{ height: `${BACKDROP_HEIGHT + 450}px` }}>
 
       {/* Scrollable Cards */}
       <div
