@@ -133,17 +133,7 @@ export const AnimatedCarousel: React.FC<AnimatedCarouselProps> = ({
                 >
                   {product.name}
                 </h3>
-                {product.description && (
-                  <p
-                    className="text-sm opacity-70 mb-2 text-center line-clamp-2 px-2"
-                    style={{
-                      color: textColor,
-                      fontFamily,
-                    }}
-                  >
-                    {product.description}
-                  </p>
-                )}
+
                 <span
                   className="font-bold text-xl"
                   style={{
