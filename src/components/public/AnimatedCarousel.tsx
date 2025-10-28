@@ -47,37 +47,6 @@ export const AnimatedCarousel: React.FC<AnimatedCarouselProps> = ({
 
   return (
     <div className="relative w-full overflow-hidden" style={{ height: `${BACKDROP_HEIGHT + 350}px` }}>
-      {/* Backdrop Images */}
-      <div
-        className="absolute inset-0 overflow-hidden"
-        style={{ height: `${BACKDROP_HEIGHT}px` }}
-      >
-        {products.map((product, index) => {
-          const opacity = Math.max(
-            0,
-            1 - Math.abs((scrollX - index * CARD_WIDTH) / CARD_WIDTH)
-          );
-
-          return (
-            <img
-              key={product.id}
-              src={product.images[0] || ''}
-              alt={product.name}
-              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
-              style={{ opacity }}
-            />
-          );
-        })}
-
-        {/* Gradient Overlay */}
-        <div
-          className="absolute bottom-0 left-0 right-0"
-          style={{
-            height: `${BACKDROP_HEIGHT}px`,
-            background: 'linear-gradient(to bottom, transparent, white)',
-          }}
-        />
-      </div>
 
       {/* Scrollable Cards */}
       <div
