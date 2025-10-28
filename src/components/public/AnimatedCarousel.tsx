@@ -1,17 +1,22 @@
 import React, { useRef, useEffect, useState } from 'react';
+import { Product } from '../../types';
 
 interface AnimatedCarouselProps {
-  images: string[];
+  products: Product[];
   primaryColor: string;
   textColor: string;
+  cardBackgroundColor?: string;
   fontFamily?: string;
+  onProductClick?: (product: Product) => void;
 }
 
 export const AnimatedCarousel: React.FC<AnimatedCarouselProps> = ({
-  images,
+  products,
   primaryColor,
   textColor,
+  cardBackgroundColor = '#ffffff',
   fontFamily = 'Inter',
+  onProductClick,
 }) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [scrollX, setScrollX] = useState(0);
@@ -38,6 +43,8 @@ export const AnimatedCarousel: React.FC<AnimatedCarouselProps> = ({
   const SPACING = (containerWidth - CARD_WIDTH) / 2;
   const BACKDROP_HEIGHT = window.innerHeight * 0.5;
 
+  if (products.length === 0) return null;
+
   return (
     <div className="relative w-full overflow-hidden" style={{ height: `${BACKDROP_HEIGHT + 350}px` }}>
       {/* Backdrop Images */}
@@ -45,13 +52,7 @@ export const AnimatedCarousel: React.FC<AnimatedCarouselProps> = ({
         className="absolute inset-0 overflow-hidden"
         style={{ height: `${BACKDROP_HEIGHT}px` }}
       >
-        {images.map((image, index) => {
-          const inputRange = [
-            (index - 1) * CARD_WIDTH,
-            index * CARD_WIDTH,
-            (index + 1) * CARD_WIDTH,
-          ];
-
+        {products.map((product, index) => {
           const opacity = Math.max(
             0,
             1 - Math.abs((scrollX - index * CARD_WIDTH) / CARD_WIDTH)
@@ -59,9 +60,9 @@ export const AnimatedCarousel: React.FC<AnimatedCarouselProps> = ({
 
           return (
             <img
-              key={index}
-              src={image}
-              alt={`Backdrop ${index + 1}`}
+              key={product.id}
+              src={product.images[0] || ''}
+              alt={product.name}
               className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
               style={{ opacity }}
             />
@@ -90,33 +91,33 @@ export const AnimatedCarousel: React.FC<AnimatedCarouselProps> = ({
           scrollSnapType: 'x mandatory',
         }}
       >
-        {images.map((image, index) => {
-          const inputRange = [
-            (index - 1) * CARD_WIDTH,
-            index * CARD_WIDTH,
-            (index + 1) * CARD_WIDTH,
-          ];
-
+        {products.map((product, index) => {
           const translateY = Math.min(
             0,
             -50 * (1 - Math.abs((scrollX - index * CARD_WIDTH) / CARD_WIDTH))
           );
 
+          const minPrice = product.variations.length > 0
+            ? Math.min(...product.variations.map(v => v.price))
+            : 0;
+
           return (
             <div
-              key={index}
+              key={product.id}
               className="flex-shrink-0 snap-center"
               style={{ width: `${CARD_WIDTH}px` }}
             >
               <div
-                className="mx-2 p-2 rounded-3xl bg-white shadow-xl flex flex-col items-center transition-transform duration-300"
+                className="mx-2 p-2 rounded-3xl shadow-xl flex flex-col items-center transition-transform duration-300 cursor-pointer hover:shadow-2xl"
                 style={{
                   transform: `translateY(${translateY}px)`,
+                  backgroundColor: cardBackgroundColor,
                 }}
+                onClick={() => onProductClick && onProductClick(product)}
               >
                 <img
-                  src={image}
-                  alt={`Slide ${index + 1}`}
+                  src={product.images[0] || ''}
+                  alt={product.name}
                   className="w-full rounded-2xl mb-2"
                   style={{
                     height: `${CARD_WIDTH * 1.2}px`,
@@ -124,14 +125,34 @@ export const AnimatedCarousel: React.FC<AnimatedCarouselProps> = ({
                   }}
                 />
                 <h3
-                  className="font-bold text-2xl"
+                  className="font-bold text-2xl mb-1"
                   style={{
                     color: textColor,
                     fontFamily,
                   }}
                 >
-                  Título
+                  {product.name}
                 </h3>
+                {product.description && (
+                  <p
+                    className="text-sm opacity-70 mb-2 text-center line-clamp-2 px-2"
+                    style={{
+                      color: textColor,
+                      fontFamily,
+                    }}
+                  >
+                    {product.description}
+                  </p>
+                )}
+                <span
+                  className="font-bold text-xl"
+                  style={{
+                    color: primaryColor,
+                    fontFamily,
+                  }}
+                >
+                  ${minPrice.toLocaleString('es-CO')}
+                </span>
               </div>
             </div>
           );
