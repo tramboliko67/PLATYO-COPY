@@ -422,6 +422,31 @@ export const PublicMenu: React.FC = () => {
       </header>
 
       {/* ANIMATED CAROUSEL */}
+      <div className="text-left mb-2 -mt-10 p-4 pb-6 md:p-0 "> 
+        <p
+          className="text-xl mb-2 opacity-70"
+          style={{
+            color: textColor,
+            fontFamily: theme.primary_font || 'Inter'
+          }}
+        >
+          Te presentamos nuestros
+        </p>
+        <h2
+          className="text-5xl font-bold mb-2"
+          style={{
+            color: textColor,
+            fontFamily: theme.secondary_font || 'Poppins'
+          }}
+        >
+          destacados
+        </h2>
+        <div className="flex items-left justify-left gap-1">
+          {[1,2,3,4,5].map(i => (
+            <Star key={i} className="w-5 h-5 fill-current" style={{ color: secondaryColor }} />
+          ))}
+        </div>
+      </div>
       {!searchTerm && featuredProducts.length > 0 && (
         <section className="relative z-30 -mt-5">
           <AnimatedCarousel
