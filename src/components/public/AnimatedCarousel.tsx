@@ -133,16 +133,6 @@ export const AnimatedCarousel: React.FC<AnimatedCarouselProps> = ({
                 >
                   {product.name}
                 </h3>
-
-                <span
-                  className="font-bold text-xl"
-                  style={{
-                    color: primaryColor,
-                    fontFamily,
-                  }}
-                >
-                  ${minPrice.toLocaleString('es-CO')}
-                </span>
               </div>
             </div>
           );
