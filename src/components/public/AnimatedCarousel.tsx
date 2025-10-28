@@ -47,6 +47,7 @@ export const AnimatedCarousel: React.FC<AnimatedCarouselProps> = ({
 
   return (
     <div className="relative w-full overflow-hidden" style={{ height: `${BACKDROP_HEIGHT + 450}px` }}>
+      <div className="text-left mb-2 -mt-10 p-4 pb-6 md:p-0 ">  
         <p
           className="text-xl mb-2 opacity-70"
           style={{
@@ -70,6 +71,7 @@ export const AnimatedCarousel: React.FC<AnimatedCarouselProps> = ({
             <Star key={i} className="w-5 h-5 fill-current" style={{ color: secondaryColor }} />
           ))}
         </div>
+      </div>
 
       {/* Scrollable Cards */}
       <div
